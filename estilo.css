@@ -1,31 +1,311 @@
+:root {
+  --rosa: #f4c1ca;
+  --rosa-claro: #fbe6e9;
+  --marfim: #fffaf8;
+  --carvao: #22202a;
+  --texto-suave: #5b5662;
+  --ouro: #b8913f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  max-width: 480px;
-  margin: 24px auto;
-  padding: 0 16px;
-  text-align: center;
-  background: #1d1f24;
-  color: #e8e8e8;
-  transition: background 0.4s;
+  margin: 0;
+  font-family: "Figtree", system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  background: var(--marfim);
+  color: var(--carvao);
 }
 
-/* quando a luz acende, o body ganha a classe "acesa" */
-body.acesa {
-  background: #fff7d1;
-  color: #2a2200;
+h1,
+h2 {
+  font-family: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
 }
 
-.lampada {
-  font-size: 80px;
-  margin: 16px 0;
+h1 {
+  font-size: clamp(2.5rem, 7vw, 4.25rem);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+}
+
+p {
+  margin: 0 0 16px;
+  max-width: 60ch;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ouro);
+  outline-offset: 3px;
+}
+
+/* ---------- topo ---------- */
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px 24px;
+}
+
+.marca {
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.topo nav {
+  display: flex;
+  gap: 20px;
+}
+
+.topo nav a {
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+}
+
+.topo nav a:hover {
+  border-bottom-color: var(--ouro);
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- apresentação ---------- */
+.inicio {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 48px;
+  align-items: center;
+  padding: 40px 0 72px;
+}
+
+.destaque {
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
+
+/* foto dentro de um arco rosa: o fundo branco da foto some com o "multiply" */
+.retrato {
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  background: var(--rosa-claro);
+  border-radius: 999px 999px 28px 28px;
+  overflow: hidden;
+}
+
+.retrato img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
+  mix-blend-mode: multiply;
+}
+
+/* lista "em resumo": rótulo à esquerda, valor à direita */
+.resumo {
+  margin: 28px 0 0;
+  max-width: 460px;
+}
+
+.resumo div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rosa);
+}
+
+.resumo dt {
+  color: var(--texto-suave);
+}
+
+.resumo dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* ---------- jogo ---------- */
+.jogo-secao {
+  padding: 56px 0 72px;
+  border-top: 2px solid var(--rosa);
+}
+
+.palco {
+  margin-top: 24px;
+  border: 3px solid var(--carvao);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--rosa-claro);
+}
+
+#jogo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 800 / 260;
+  touch-action: none;
+  cursor: pointer;
+}
+
+#jogo:focus-visible {
+  outline-offset: -6px;
+}
+
+.painel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 40px;
+  align-items: flex-start;
+  margin-top: 24px;
+}
+
+.numero {
+  display: flex;
+  flex-direction: column;
+}
+
+.valor {
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.rotulo {
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+.historico ul {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.historico li {
+  padding: 2px 12px;
+  border-radius: 999px;
+  background: var(--rosa-claro);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.historico .vazio {
+  background: none;
+  padding-left: 0;
+  font-weight: 400;
+  color: var(--texto-suave);
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
 }
 
 button {
-  padding: 10px 24px;
-  border: none;
-  border-radius: 8px;
-  background: #f7df1e;
-  color: #1d1f24;
-  font-size: 16px;
+  font: inherit;
+  font-weight: 600;
+  padding: 10px 26px;
+  border: 2px solid var(--carvao);
+  border-radius: 999px;
+  background: var(--carvao);
+  color: var(--marfim);
   cursor: pointer;
 }
+
+button:hover {
+  background: #3a3644;
+}
+
+button.secundario {
+  background: transparent;
+  color: var(--carvao);
+}
+
+button.secundario:hover {
+  background: var(--rosa-claro);
+}
+
+/* rodapé ---------- */
+footer {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* celular ---------- */
+@media (max-width: 720px) {
+  body {
+    font-size: 17px;
+  }
+
+  .inicio {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-bottom: 48px;
+  }
+
+  .retrato {
+    max-width: 320px;
+  }
+}
+/*  tema escuro ---------- */
+body.escuro {
+  --marfim: #17151c;
+  --carvao: #f5eeee;
+  --rosa: #5a3a42;
+  --rosa-claro: #2a2330;
+  --texto-suave: #b8aeb5;
+  --ouro: #d9b45f;
+}
+
+/* a foto precisa de fundo claro */
+body.escuro .retrato {
+  background: #fbe6e9;
+}
+
+body.escuro button:hover {
+  background: #5a3a42;
+}
+
+.topo nav button{
+  border: none;
+  background: transparent;
+  align-items: center;
+  padding: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+} 

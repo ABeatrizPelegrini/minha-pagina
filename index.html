@@ -3,16 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Minha primeira página no ar</title>
+  
+  <title>Anne Beatriz | Apresentação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-  <h1>Minha primeira página no ar</h1>
-  <p>Feita em HTML, CSS e JavaScript.</p>
+  <header class="topo">
+    <span class="marca">Anne Beatriz Pelegrini Nunes</span>
+    <nav>
+      <a href="#sobre">Sobre mim</a>
+      <a href="#jogo-secao">Jogo</a>
+      <button id="tema" type="button" class="secundario">🪩</button>
+    </nav>
+  </header>
 
-  <p id="lampada" class="lampada">🌑</p>
-  <button id="interruptor" type="button">Ligar</button>
-  <p id="aviso">Luz apagada. Clique para acender.</p>
+  <main>
+    <!-- APRESENTAÇÃO -->
+    <section class="inicio" id="sobre">
+      <div class="inicio-texto">
+        <h1>Oi, eu sou Anne Beatriz.</h1>
+        <p class="destaque">Esta é a minha primeira página no ar, feita em HTML, CSS e JavaScript.</p>
+        
+        <p>Gosto de aprender coisas novas e de transformar ideias em algo que funciona. Aqui você fica
+          conhecendo um pouco de mim e ainda pode jogar um joguinho que eu mesma criei.</p>
+
+        <dl class="resumo">
+          <div><dt>Nome</dt><dd>Anne Beatriz Pelegrini Nunes</dd></div>
+          <div><dt>Cidade</dt><dd>Brasília</dd></div>
+          <div><dt>Estudo / trabalho</dt><dd>Estudante de Análise e Desenvolvimento de Sistemas</dd></div>
+          <div><dt>Gosto de</dt><dd>Programar, ler livros e assistir filmes/séries</dd></div>
+        </dl>
+      </div>
+
+      <figure class="retrato">
+        <img src="foto.jpg" alt="Retrato: mulher de cabelo preto longo, camisa rosa e calça preta" width="901" height="1119">
+      </figure>
+    </section>
+
+    <!-- JOGO -->
+    <section class="jogo-secao" id="jogo-secao">
+      <h2>Pule os prédios</h2>
+      <p>Aperte <strong>espaço</strong> (ou toque na tela) para pular. O jogo só termina quando a Anne esbarra em um prédio.</p>
+
+      <div class="palco">
+        <canvas id="jogo" tabindex="0" role="img"
+                aria-label="Jogo: uma boneca corre e pula prédios. Aperte espaço ou toque para pular."></canvas>
+      </div>
+
+      <div class="painel">
+        <div class="numero">
+          <span class="valor" id="placar">0</span>
+          <span class="rotulo">prédios pulados</span>
+        </div>
+        <div class="numero">
+          <span class="valor" id="recorde">0</span>
+          <span class="rotulo">recorde</span>
+        </div>
+        <div class="historico">
+          <span class="rotulo">Últimas partidas</span>
+          <ul id="ultimas" aria-live="polite"></ul>
+        </div>
+      </div>
+
+      <div class="acoes">
+        <button id="botao-jogar" type="button">Jogar</button>
+        <button id="botao-apagar" type="button" class="secundario">Apagar resultados</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Feita em HTML, CSS e JavaScript.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
