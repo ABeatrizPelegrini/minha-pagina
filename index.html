@@ -3,21 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <title>Anne Beatriz | Apresentação</title>
+
+  <title>Anne Beatriz | Do estudo ao sucesso</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
+  <!-- TEXTURA DE FUNDO: prédios e símbolos de código que se mexem ao rolar a página -->
+  <div class="fundo" aria-hidden="true">
+    <div class="camada a"></div>
+    <div class="camada b"></div>
+  </div>
+
   <header class="topo">
-    <span class="marca">Anne Beatriz Pelegrini Nunes</span>
-    <nav>
-      <a href="#sobre">Sobre mim</a>
-      <a href="#jogo-secao">Jogo</a>
-      <button id="tema" type="button" class="secundario">🪩</button>
-    </nav>
+    <div class="topo-interno">
+      <!-- o nome é "digitado" pelo JavaScript, com um cursor piscando -->
+      <a class="marca" href="#sobre" aria-label="Anne Beatriz Pelegrini Nunes, voltar ao início">
+        <span class="medida" aria-hidden="true">&gt; Anne Beatriz Pelegrini Nunes</span>
+        <span class="digitado" id="nome-digitado" aria-hidden="true">Anne Beatriz Pelegrini Nunes</span>
+      </a>
+      <nav aria-label="Menu principal">
+        <a href="#sobre">Sobre mim</a>
+        <a href="#carreira">Carreira</a>
+        <a href="#jogo-secao">Jogo</a>
+        <button id="tema" type="button" class="secundario" aria-label="Alternar entre tema claro e escuro" title="Alternar tema">🪩</button>
+      </nav>
+    </div>
   </header>
 
   <main>
@@ -26,15 +39,24 @@
       <div class="inicio-texto">
         <h1>Oi, eu sou Anne Beatriz.</h1>
         <p class="destaque">Esta é a minha primeira página no ar, feita em HTML, CSS e JavaScript.</p>
-        
+
         <p>Gosto de aprender coisas novas e de transformar ideias em algo que funciona. Aqui você fica
           conhecendo um pouco de mim e ainda pode jogar um joguinho que eu mesma criei.</p>
 
         <dl class="resumo">
-          <div><dt>Nome</dt><dd>Anne Beatriz Pelegrini Nunes</dd></div>
           <div><dt>Cidade</dt><dd>Brasília</dd></div>
           <div><dt>Estudo / trabalho</dt><dd>Estudante de Análise e Desenvolvimento de Sistemas</dd></div>
           <div><dt>Gosto de</dt><dd>Programar, ler livros e assistir filmes/séries</dd></div>
+
+          <!-- TROQUE os dois links abaixo pelos seus (mexa no href e no texto) -->
+          <div>
+            <dt>LinkedIn</dt>
+            <dd><a href="https://www.linkedin.com/in/anne-beatriz-pelegrini-30ab16351/" target="_blank" rel="noopener noreferrer">linkedin.com/in/anne-beatriz-pelegrini-30ab16351/</a></dd>
+          </div>
+          <div>
+            <dt>GitHub</dt>
+            <dd><a href="https://github.com/ABeatrizPelegrini" target="_blank" rel="noopener noreferrer">github.com/ABeatrizPelegrini</a></dd>
+          </div>
         </dl>
       </div>
 
@@ -43,12 +65,65 @@
       </figure>
     </section>
 
+    <!-- CARREIRA -->
+    <section class="carreira" id="carreira">
+      <h2>Minha carreira</h2>
+
+      <div class="historia">
+        <h3>Por que escolhi tecnologia da informação</h3>
+        <!-- TROQUE os dois parágrafos pela sua história -->
+        <p>Desde pequena, sempre fui curiosa sobre como as coisas funcionam. Meu primeiro contato com tecnologia foi em 
+          casa ajudando minha familia com computadores e dispositivos eletrônicos. Com o tempo, percebi que queria entender 
+          mais profundamente o mundo da tecnologia e como ela pode ser usada para resolver problemas e criar soluções inovadoras.
+        </p>
+        <p>No entanto, minha primeira opção de curso não era ADS, comecei na área da arquitetura civil e com o tempo me vi na área de tecnologia. Sempre fui apaixonada
+          por tecnologia da informação e resolvi procurar um curso que me fizesse ter uma base sólida nessa área.</p>
+      </div>
+
+      <h3 class="titulo-escada">Minha trajetória</h3>
+      <p class="dica">Do início à atualidade</p>
+
+      <!--
+        COMO ADICIONAR UM DEGRAU:
+        copie um bloco <li>...</li> inteiro e cole na ordem do tempo (do mais antigo para o mais novo).
+        O último <li> do arquivo aparece no topo da escada. Os degraus se ajustam sozinhos.
+      -->
+      <ol class="escada">
+        <li>
+          <span class="ano">2025</span>
+          <h4>O começo</h4>
+          <p>No inicio de 2025, estava cursando o primeiro semestre de arquitetura
+             (gostei bastante), mas do meio do ano para o fim fiquei pensativa quanto a esta carreira.</p>
+        </li>
+        <li>
+          <span class="ano">02/2026</span>
+          <h4>Decidida</h4>
+          <p>Depois de muito pensar, decidi que queria me dedicar à tecnologia da informação e 
+            comecei a pesquisar cursos. Assim, comecei a cursar ADS na Faculdade SENAC.</p>
+        </li>
+        <li>
+          <span class="ano">05/2026</span>
+          <h4>Estágio</h4>
+          <p>Depois de ingressar na faculdade, comecei a buscar oportunidades de estágio para aplicar 
+            meus conhecimentos na prática. Assim, consegui uma oportunidade como Jovem Aprendiz em uma grande empresa
+            e atuei na área de Suporte Técnico.</p>
+        </li>
+        <li>
+          <span class="ano">Hoje</span>
+          <h4>Evoluindo as minhas habilidades</h4>
+          <p>No momento, estou em um novo emprego como estagiária na área de tecnologia da informação, no qual estou 
+            desenvolvendo minhas competências e adquirindo experiência prática mais voltadas a programação web.
+          Além disso estou aprendendo novas tecnologias e ferramentas do mercado, como: Python, JavaScript e Infra de Redes.</p>
+        </li>
+      </ol>
+    </section>
+
     <!-- JOGO -->
     <section class="jogo-secao" id="jogo-secao">
-      <h2>Pule os prédios</h2>
-      <p>Aperte <strong>espaço</strong> (ou toque na tela) para pular. O jogo só termina quando a Anne esbarra em um prédio.</p>
+      <h2>Para descontrair, pule os prédios</h2>
+      <p>Toque na tela para começar e aperte <strong>espaço</strong> ou toque paa pular. O jogo só termina quando a Anne esbarra em um prédio.</p>
 
-      <div class="palco">
+      <div class="palco"> 
         <canvas id="jogo" tabindex="0" role="img"
                 aria-label="Jogo: uma boneca corre e pula prédios. Aperte espaço ou toque para pular."></canvas>
       </div>

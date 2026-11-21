@@ -1,3 +1,4 @@
+/* Cores tiradas da sua foto: rosa da camisa, preto da calça, dourado do colar */
 :root {
   --rosa: #f4c1ca;
   --rosa-claro: #fbe6e9;
@@ -11,35 +12,57 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px; /* o menu fixo não cobre o título ao clicar nos links */
+}
+
 body {
   margin: 0;
-  font-family: "Figtree", system-ui, sans-serif;
-  font-size: 18px;
-  line-height: 1.6;
+  font-family: "Outfit", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.65;
   background: var(--marfim);
   color: var(--carvao);
 }
 
 h1,
-h2 {
-  font-family: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+h2,
+h3,
+h4 {
+  font-family: "Outfit", system-ui, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
   margin: 0 0 16px;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 7vw, 4.25rem);
+  font-size: clamp(2.6rem, 7vw, 3.2rem);
 }
 
 h2 {
-  font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+  font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 4px;
 }
 
 p {
   margin: 0 0 16px;
   max-width: 60ch;
+}
+
+strong {
+  font-weight: 600;
 }
 
 a {
@@ -51,36 +74,151 @@ a {
   outline-offset: 3px;
 }
 
+/* ---------- fundo com textura (prédios + código) ---------- */
+/* As duas camadas andam em velocidades diferentes quando você rola a página. */
+.fundo {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.camada {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: -400px;
+  will-change: transform;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+}
+
+/* camada de trás: contorno de prédios (devagar) */
+.camada.a {
+  background: var(--carvao);
+  opacity: 0.045;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360' viewBox='0 0 360 360' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E %3Cpath d='M0 330H360'/%3E %3Crect x='20' y='200' width='60' height='130'/%3E %3Crect x='95' y='150' width='50' height='180'/%3E %3Crect x='160' y='235' width='70' height='95'/%3E %3Crect x='245' y='115' width='55' height='215'/%3E %3Crect x='312' y='265' width='36' height='65'/%3E %3Cpath d='M50 200V184M120 150V130M270 115V90M270 90H282'/%3E %3Cg stroke-width='9' stroke-dasharray='8 12' stroke-linecap='butt'%3E %3Cpath d='M32 222H72M32 247H72M32 272H72M32 297H72'/%3E %3Cpath d='M106 175H136M106 200H136M106 225H136M106 250H136M106 275H136M106 300H136'/%3E %3Cpath d='M172 258H222M172 283H222M172 308H222'/%3E %3Cpath d='M257 140H292M257 165H292M257 190H292M257 215H292M257 240H292M257 265H292M257 290H292'/%3E %3C/g%3E %3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360' viewBox='0 0 360 360' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E %3Cpath d='M0 330H360'/%3E %3Crect x='20' y='200' width='60' height='130'/%3E %3Crect x='95' y='150' width='50' height='180'/%3E %3Crect x='160' y='235' width='70' height='95'/%3E %3Crect x='245' y='115' width='55' height='215'/%3E %3Crect x='312' y='265' width='36' height='65'/%3E %3Cpath d='M50 200V184M120 150V130M270 115V90M270 90H282'/%3E %3Cg stroke-width='9' stroke-dasharray='8 12' stroke-linecap='butt'%3E %3Cpath d='M32 222H72M32 247H72M32 272H72M32 297H72'/%3E %3Cpath d='M106 175H136M106 200H136M106 225H136M106 250H136M106 275H136M106 300H136'/%3E %3Cpath d='M172 258H222M172 283H222M172 308H222'/%3E %3Cpath d='M257 140H292M257 165H292M257 190H292M257 215H292M257 240H292M257 265H292M257 290H292'/%3E %3C/g%3E %3C/svg%3E");
+  -webkit-mask-size: 360px 360px;
+  mask-size: 360px 360px;
+  transform: translate3d(0, calc(var(--a, 0) * -1px), 0);
+}
+
+/* camada da frente: símbolos de programação*/
+.camada.b {
+  background: var(--ouro);
+  opacity: 0.12;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E %3Cpath d='M34 42L20 55L34 68M56 40L44 70M66 42L80 55L66 68'/%3E %3Cpath d='M190 40q-12 0-12 12v8q0 8-8 8q8 0 8 8v8q0 12 12 12'/%3E %3Cpath d='M214 40q12 0 12 12v8q0 8 8 8q-8 0-8 8v8q0 12-12 12'/%3E %3Ccircle cx='60' cy='152' r='3'/%3E %3Ccircle cx='60' cy='170' r='3'/%3E %3Cpath d='M60 170L56 180'/%3E %3Cpath d='M170 160H190M170 172H190M198 156L212 166L198 176'/%3E %3Cellipse cx='244' cy='150' rx='8' ry='12'/%3E %3Cpath d='M262 142L268 138V162'/%3E %3Cpath d='M30 250L44 260L30 270M56 274H76'/%3E %3Cpath d='M158 222q-12 16 0 32M176 222q12 16 0 32'/%3E %3Ccircle cx='120' cy='100' r='1.5'/%3E %3Ccircle cx='270' cy='210' r='1.5'/%3E %3Ccircle cx='110' cy='200' r='1.5'/%3E %3Ccircle cx='230' cy='270' r='1.5'/%3E %3Ccircle cx='20' cy='120' r='1.5'/%3E %3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E %3Cpath d='M34 42L20 55L34 68M56 40L44 70M66 42L80 55L66 68'/%3E %3Cpath d='M190 40q-12 0-12 12v8q0 8-8 8q8 0 8 8v8q0 12 12 12'/%3E %3Cpath d='M214 40q12 0 12 12v8q0 8 8 8q-8 0-8 8v8q0 12-12 12'/%3E %3Ccircle cx='60' cy='152' r='3'/%3E %3Ccircle cx='60' cy='170' r='3'/%3E %3Cpath d='M60 170L56 180'/%3E %3Cpath d='M170 160H190M170 172H190M198 156L212 166L198 176'/%3E %3Cellipse cx='244' cy='150' rx='8' ry='12'/%3E %3Cpath d='M262 142L268 138V162'/%3E %3Cpath d='M30 250L44 260L30 270M56 274H76'/%3E %3Cpath d='M158 222q-12 16 0 32M176 222q12 16 0 32'/%3E %3Ccircle cx='120' cy='100' r='1.5'/%3E %3Ccircle cx='270' cy='210' r='1.5'/%3E %3Ccircle cx='110' cy='200' r='1.5'/%3E %3Ccircle cx='230' cy='270' r='1.5'/%3E %3Ccircle cx='20' cy='120' r='1.5'/%3E %3C/svg%3E");
+  -webkit-mask-size: 400px 400px;
+  mask-size: 400px 400px;
+  transform: translate3d(0, calc(var(--b, 0) * -1px), 0);
+}
+
 /* ---------- topo ---------- */
 .topo {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--marfim);
+  background: color-mix(in srgb, var(--marfim) 82%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rosa);
+}
+
+.topo-interno {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 8px 24px;
   max-width: 960px;
   margin: 0 auto;
-  padding: 20px 24px;
+  padding: 12px 24px;
 }
 
+/* nome com efeito de digitação: um texto invisível reserva o espaço,
+   para o menu não "pular" enquanto as letras aparecem */
 .marca {
-  font-family: "Bricolage Grotesque", system-ui, sans-serif;
-  font-weight: 700;
-  font-size: 1.15rem;
+  display: inline-grid;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.01em;
+}
+
+.marca > * {
+  grid-area: 1 / 1;
+}
+
+.marca .medida {
+  visibility: hidden;
+  padding-right: 10px;
+}
+
+.marca .digitado::before {
+  content: "> ";
+  color: var(--ouro);
+}
+
+/* o cursor que pisca */
+.marca .digitado::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 3px;
+  vertical-align: -0.17em;
+  background: var(--ouro);
+  animation: piscar 1s steps(1) infinite;
+}
+
+@keyframes piscar {
+  50% {
+    opacity: 0;
+  }
 }
 
 .topo nav {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 4px;
 }
 
 .topo nav a {
   text-decoration: none;
   font-weight: 500;
-  border-bottom: 2px solid transparent;
+  padding: 6px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: background 0.2s;
 }
 
 .topo nav a:hover {
-  border-bottom-color: var(--ouro);
+  background: var(--rosa-claro);
+}
+
+/* botão do tema: redondinho */
+.topo nav button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-left: 6px;
+  padding: 0;
+  border: 1px solid var(--rosa);
+  background: var(--rosa-claro);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.topo nav button:hover {
+  background: var(--rosa);
 }
 
 main {
@@ -95,11 +233,11 @@ main {
   grid-template-columns: 1.25fr 0.75fr;
   gap: 48px;
   align-items: center;
-  padding: 40px 0 72px;
+  padding: 48px 0 72px;
 }
 
 .destaque {
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   line-height: 1.4;
 }
 
@@ -124,7 +262,7 @@ main {
 /* lista "em resumo": rótulo à esquerda, valor à direita */
 .resumo {
   margin: 28px 0 0;
-  max-width: 460px;
+  max-width: 480px;
 }
 
 .resumo div {
@@ -137,12 +275,106 @@ main {
 
 .resumo dt {
   color: var(--texto-suave);
+  flex-shrink: 0;
 }
 
 .resumo dd {
   margin: 0;
-  font-weight: 600;
+  min-width: 0;
+  font-weight: 500;
   text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.resumo a {
+  text-decoration: underline;
+  text-decoration-color: var(--ouro);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.resumo a:hover {
+  background: var(--rosa-claro);
+}
+
+/* ---------- carreira ---------- */
+.carreira {
+  padding: 56px 0 72px;
+  border-top: 2px solid var(--rosa);
+}
+
+.historia {
+  margin-top: 28px;
+  padding: 32px;
+  background: var(--rosa-claro);
+  border-radius: 24px;
+}
+
+.historia h3 {
+  margin-bottom: 14px;
+}
+
+.historia p:last-child {
+  margin-bottom: 0;
+}
+
+.titulo-escada {
+  margin-top: 56px;
+}
+
+.dica {
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+/* A escada do tempo
+   Os números --n e --total são colocados pelo JavaScript. */
+.escada {
+  --total: 4;
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column-reverse; /* o 1º item fica embaixo, o último no topo */
+}
+
+.escada li {
+  position: relative;
+  margin-left: calc(var(--n, 0) * min(44px, 45% / var(--total)));
+  padding: 18px 0 20px 24px;
+  border-top: 2px solid var(--ouro);
+  border-left: 2px solid var(--ouro);
+}
+
+/* o primeiro degrau (embaixo) fecha a escada */
+.escada li:first-child {
+  border-bottom: 2px solid var(--ouro);
+}
+
+/* quadradinho dourado na quina de cada degrau */
+.escada li::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: var(--ouro);
+}
+
+.escada p {
+  margin: 0;
+}
+
+.ano {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 1px 12px;
+  border-radius: 999px;
+  background: var(--rosa-claro);
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 /* ---------- jogo ---------- */
@@ -186,8 +418,7 @@ main {
 }
 
 .valor {
-  font-family: "Bricolage Grotesque", system-ui, sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 3rem;
   line-height: 1;
 }
@@ -210,7 +441,7 @@ main {
   padding: 2px 12px;
   border-radius: 999px;
   background: var(--rosa-claro);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.95rem;
 }
 
@@ -230,7 +461,7 @@ main {
 
 button {
   font: inherit;
-  font-weight: 600;
+  font-weight: 500;
   padding: 10px 26px;
   border: 2px solid var(--carvao);
   border-radius: 999px;
@@ -252,7 +483,7 @@ button.secundario:hover {
   background: var(--rosa-claro);
 }
 
-/* rodapé ---------- */
+/* ---------- rodapé ---------- */
 footer {
   max-width: 960px;
   margin: 0 auto;
@@ -265,23 +496,7 @@ footer p {
   margin: 0;
 }
 
-/* celular ---------- */
-@media (max-width: 720px) {
-  body {
-    font-size: 17px;
-  }
-
-  .inicio {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    padding-bottom: 48px;
-  }
-
-  .retrato {
-    max-width: 320px;
-  }
-}
-/*  tema escuro ---------- */
+/* ---------- tema escuro ---------- */
 body.escuro {
   --marfim: #17151c;
   --carvao: #f5eeee;
@@ -300,12 +515,50 @@ body.escuro button:hover {
   background: #5a3a42;
 }
 
-.topo nav button{
-  border: none;
-  background: transparent;
-  align-items: center;
-  padding: 0;
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-} 
+body.escuro .camada.a {
+  opacity: 0.06;
+}
+
+body.escuro .camada.b {
+  opacity: 0.11;
+}
+
+/* ---------- celular ---------- */
+@media (max-width: 720px) {
+  body {
+    font-size: 17.5px;
+  }
+
+  .inicio {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-bottom: 48px;
+  }
+
+  .retrato {
+    max-width: 320px;
+  }
+
+  .marca {
+    font-size: 0.95rem;
+  }
+
+  .topo nav a {
+    padding: 6px 10px;
+  }
+
+  .historia {
+    padding: 24px;
+  }
+}
+
+/* quem prefere menos movimento: sem rolagem suave e sem cursor piscando */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marca .digitado::after {
+    animation: none;
+  }
+}

@@ -210,9 +210,12 @@ function atualizar(dt) {
       p.contado = true;
       pulados++;
       placarEl.textContent = pulados;
+
+  // a cada 50 prédios pulados, troca o tema (claro vira escuro e escuro vira claro)
+  if (pulados % 30 === 0) document.body.classList.toggle("escuro");
+      }
     }
   }
-}
 
 // ---------- desenho ----------
 const FUNDO = [[40, 70], [30, 110], [50, 85], [36, 130], [44, 95], [56, 75], [30, 120], [46, 90]];
@@ -446,8 +449,8 @@ function desenharAviso(linhas) {
   ctx.textAlign = "center";
   linhas.forEach(function (linha, i) {
     ctx.font = i === 0
-      ? '700 22px "Bricolage Grotesque", system-ui, sans-serif'
-      : '500 15px "Figtree", system-ui, sans-serif';
+      ? '600 22px "Outfit", system-ui, sans-serif'
+      : '400 15px "Outfit", system-ui, sans-serif';
     ctx.fillText(linha, LARGURA / 2, topo + 32 + i * 26);
   });
 }
@@ -458,12 +461,12 @@ function desenhar() {
   desenharBoneca();
 
   if (estado === "pronto") {
-    desenharAviso(["Pronta para correr?", "Toque aqui ou aperte espaço para começar"]);
+    desenharAviso(["Pronta para correr?", "Toque aqui para começar"]);
   } else if (estado === "fim") {
     desenharAviso([
       "Esbarrou! Você pulou " + plural(pulados),
       novoRecorde ? "Novo recorde!" : "Recorde: " + plural(salvo.recorde),
-      "Toque ou aperte espaço para jogar de novo",
+      "Toque aqui para jogar de novo",
     ]);
   }
 }
@@ -511,3 +514,58 @@ mostrarResultados();
 requestAnimationFrame(quadro);
 
 document.querySelector("#tema").addEventListener("click", () => document.body.classList.toggle("escuro"));
+
+
+// EFEITOS DA PÁGINA
+
+// quem prefere menos movimento no celular/computador não vê as animações
+const semMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// ---------- nome sendo digitado, com cursor piscando ----------
+const nomeEl = document.querySelector("#nome-digitado");
+const NOME = nomeEl.textContent.trim();
+
+if (!semMovimento) {
+  nomeEl.textContent = "";
+  let letras = 0;
+
+  function digitar() {
+    letras++;
+    nomeEl.textContent = NOME.slice(0, letras);
+    if (letras < NOME.length) {
+      setTimeout(digitar, 70 + Math.random() * 70); // ritmo de digitação
+    }
+  }
+
+  setTimeout(digitar, 600);
+}
+
+// ---------- fundo que se mexe ao rolar a página ----------
+const fundo = document.querySelector(".fundo");
+let aguardando = false;
+
+function moverFundo() {
+  const rolagem = window.scrollY;
+  // cada camada anda numa velocidade; o "%" faz o desenho recomeçar sem emenda
+  fundo.style.setProperty("--a", (rolagem * 0.12) % 360);
+  fundo.style.setProperty("--b", (rolagem * 0.3) % 400);
+  aguardando = false;
+}
+
+if (!semMovimento) {
+  window.addEventListener("scroll", function () {
+    if (!aguardando) {
+      aguardando = true;
+      requestAnimationFrame(moverFundo);
+    }
+  }, { passive: true });
+  moverFundo();
+}
+
+// ---------- escada do tempo: numera os degraus sozinha ----------
+const escada = document.querySelector(".escada");
+const degraus = escada.querySelectorAll("li");
+escada.style.setProperty("--total", degraus.length);
+degraus.forEach(function (degrau, i) {
+  degrau.style.setProperty("--n", i);
+});
