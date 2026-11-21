@@ -32,14 +32,14 @@ h2,
 h3,
 h4 {
   font-family: "Outfit", system-ui, sans-serif;
-  font-weight: 500;
+  font-weight: 50;
   line-height: 1.1;
   letter-spacing: -0.01em;
   margin: 0 0 16px;
 }
 
 h1 {
-  font-size: clamp(2.6rem, 7vw, 3.2rem);
+  font-size: clamp(7vw, 3.2rem);
 }
 
 h2 {
@@ -123,7 +123,7 @@ a {
   top: 0;
   z-index: 10;
   background: var(--marfim);
-  background: color-mix(in srgb, var(--marfim) 82%, transparent);
+  background: color-mix(in srgb, var(--marfim) 80%, transparent);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--rosa);
@@ -191,7 +191,7 @@ a {
 
 .topo nav a {
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 50;
   padding: 6px 14px;
   border-radius: 999px;
   white-space: nowrap;
@@ -200,6 +200,37 @@ a {
 
 .topo nav a:hover {
   background: var(--rosa-claro);
+}
+
+.topo nav span .digitado::before {
+  content: "> ";
+  color: var(--ouro);
+}
+
+/* o cursor que pisca */
+.topo nav span .digitado::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 3px;
+  vertical-align: -0.17em;
+  background: var(--ouro);
+  animation: piscar 1s steps(1) infinite;
+}
+
+@keyframes piscar {
+  50% {
+    opacity: 0;
+  }
+}
+
+.topo nav span .digitado::before{
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--rosa-claro);
+  font-weight: 5;
 }
 
 /* botão do tema: redondinho */

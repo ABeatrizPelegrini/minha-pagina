@@ -211,7 +211,7 @@ function atualizar(dt) {
       pulados++;
       placarEl.textContent = pulados;
 
-  // a cada 50 prédios pulados, troca o tema (claro vira escuro e escuro vira claro)
+  // a cada 30 prédios pulados, troca o tema (claro vira escuro e escuro vira claro)
   if (pulados % 30 === 0) document.body.classList.toggle("escuro");
       }
     }
